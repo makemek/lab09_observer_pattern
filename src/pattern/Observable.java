@@ -13,12 +13,12 @@ public abstract class Observable {
 		this.observers = new Vector();
 	}
 
-	public Object attach(Observer o) {
+	public Object attach(SubjectObserver o) {
 		this.observers.addElement(o);
 		return this.getUpdate();
 	}
 
-	public void detach(Observer o) {
+	public void detach(SubjectObserver o) {
 		for (int i = 0; i < observers.size(); i++) {
 			if (observers.elementAt(i).equals(o))
 				observers.removeElementAt(i);
@@ -27,7 +27,7 @@ public abstract class Observable {
 
 	public void notifyObservers() {
 		for (int i = 0; i < observers.size(); i++) {
-			Observer observer = (Observer) observers.elementAt(i);
+			SubjectObserver observer = (SubjectObserver) observers.elementAt(i);
 			observer.update(this.getUpdate());
 		}
 	}

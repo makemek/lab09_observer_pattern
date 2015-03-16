@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  *	Presents a Bar Chart view of Course Data 
  */
 
-public class BarChartObserver extends JPanel implements Observer {
+public class BarChartObserver extends JPanel implements SubjectObserver {
 
 	public BarChartObserver(CourseData data) {
 		data.attach(this);

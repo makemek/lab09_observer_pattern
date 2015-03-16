@@ -21,7 +21,7 @@ import javax.swing.event.ChangeListener;
 /*
  *	Updates the Course Data when the user moves a Slider
  */
-public class CourseController extends JPanel implements Observer,
+public class CourseController extends JPanel implements SubjectObserver,
 		ChangeListener, ActionListener {
 
 	public CourseController(CourseData subjectData) {
