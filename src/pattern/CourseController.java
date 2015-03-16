@@ -8,12 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -26,7 +21,7 @@ public class CourseController extends JPanel implements SubjectObserver,
 
 	public CourseController(CourseData subjectData) {
 		this.subjectData = subjectData;
-		this.sliders = new Vector();
+		this.sliders = new Vector<JSlider>();
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.white);
 		subjectPanel = new JPanel();
@@ -72,10 +67,9 @@ public class CourseController extends JPanel implements SubjectObserver,
 		sliders.addElement(slider);
 	}
 
-	public void update(CourseData data) {
-		Vector state = data.getSubjectData();
-		for (int i = sliders.size(); i < state.size(); i++) {
-			this.addSubject((CourseRecord) state.elementAt(i));
+	public void update(CourseRecord[] data) {
+		for (int i = sliders.size(); i < data.length; i++) {
+			this.addSubject(data[i]);
 		}
 	}
 
@@ -105,7 +99,7 @@ public class CourseController extends JPanel implements SubjectObserver,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 		JFrame frame = new JFrame("Observer Pattern");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridBagLayout());
 		frame.setResizable(false);
 		GridBagConstraints c = new GridBagConstraints();
@@ -121,10 +115,10 @@ public class CourseController extends JPanel implements SubjectObserver,
 		c.gridy = 0;
 		frame.getContentPane().add(scrollPane, c);
 		frame.pack();
-		frame.show();
+		frame.setVisible(true);
 	}
 
 	private CourseData subjectData;
-	private Vector sliders;
+	private Vector<JSlider> sliders;
 	private JPanel subjectPanel;
 }

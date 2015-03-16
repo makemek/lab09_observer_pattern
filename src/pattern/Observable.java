@@ -32,7 +32,7 @@ public abstract class Observable {
 		}
 	}
 
-	public abstract CourseData getUpdate();
+	public abstract CourseRecord[] getUpdate();
 
 	protected Vector<SubjectObserver> observers;
 }

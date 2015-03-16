@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class PieChartObserver extends JPanel implements SubjectObserver {
 
-    private CourseData courseData;
+    private CourseRecord[] courseData;
 
     private static int xOffset = 100;
     private static int yOffset = 100;
@@ -18,7 +18,7 @@ public class PieChartObserver extends JPanel implements SubjectObserver {
     private Color[] color = {Color.CYAN, Color.blue, Color.BLACK, Color.green, Color.red};
 
     public PieChartObserver(CourseData data) {
-        courseData = data;
+        courseData = data.getUpdate();
         data.attach(this);
 
         this.setPreferredSize(new Dimension(300, 300));
@@ -29,17 +29,16 @@ public class PieChartObserver extends JPanel implements SubjectObserver {
         super.paint(g);
 
         int total = 0;
-        Vector<CourseRecord> data = courseData.getSubjectData();
 
-        for(CourseRecord course : data)
+        for(CourseRecord course : courseData)
             total += course.getNumOfStudents();
 
         if(total == 0)
             return;
 
         double startAngle = 0.0;
-        for(int i = 0; i < data.size(); ++i) {
-            double ratio = (data.get(i).getNumOfStudents() / (double)total) * 360.0;
+        for(int i = 0; i < courseData.length; ++i) {
+            double ratio = (courseData[i].getNumOfStudents() / (double)total) * 360.0;
 
             //draw the arc
             g.setColor(color[i]);
@@ -49,7 +48,7 @@ public class PieChartObserver extends JPanel implements SubjectObserver {
     }
 
     @Override
-    public void update(CourseData newData) {
+    public void update(CourseRecord[] newData) {
         courseData = newData;
         this.repaint();
     }

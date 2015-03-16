@@ -51,8 +51,9 @@ public class CourseData extends Observable {
 	}
 
 	//use the pull model
-	public CourseData getUpdate() {
-		return this;
+	public CourseRecord[] getUpdate() {
+		Vector<CourseRecord> data = getSubjectData();
+        return data.toArray(new CourseRecord[data.size()]);
 	}
 
 	private void printState() {

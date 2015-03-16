@@ -14,10 +14,11 @@ import javax.swing.JPanel;
 public class BarChartObserver extends JPanel implements SubjectObserver {
 
 	public BarChartObserver(CourseData data) {
+        courseData = data.getUpdate();
 		data.attach(this);
-		this.courseData = data.getSubjectData();
+
 		this.setPreferredSize(new Dimension(2 * xOffset
-				+ (this.barSpacing + barWidth) * this.courseData.size(),
+				+ (this.barSpacing + barWidth) * this.courseData.length,
 				graphHeight + 2 * yOffset));
 		this.setBackground(Color.white);
 	}
@@ -28,10 +29,10 @@ public class BarChartObserver extends JPanel implements SubjectObserver {
 		g.drawString("Num of Students", 5, 150);
 		g.drawLine(xOffset, yOffset, xOffset, graphHeight + yOffset);
 		g.drawLine(xOffset, graphHeight + yOffset, xOffset
-				+ (this.barSpacing + barWidth) * this.courseData.size(),
+				+ (this.barSpacing + barWidth) * this.courseData.length,
 				graphHeight + yOffset);
-		for (int i = 0; i < courseData.size(); i++) {
-			CourseRecord record = (CourseRecord) courseData.elementAt(i);
+		for (int i = 0; i < courseData.length; i++) {
+			CourseRecord record = courseData[i];
 			g.setColor(Color.blue);
 			g.fillRect(this.xOffset + (i + 1) * this.barSpacing + i
 					* this.barWidth, this.yOffset + this.graphHeight
@@ -45,16 +46,16 @@ public class BarChartObserver extends JPanel implements SubjectObserver {
 		}
 	}
 
-	public void update(CourseData data) {
-		this.courseData = data.getSubjectData();
+	public void update(CourseRecord[] data) {
+		this.courseData = data;
 		this.setPreferredSize(new Dimension(2 * xOffset
-				+ (this.barSpacing + barWidth) * this.courseData.size(),
+				+ (this.barSpacing + barWidth) * this.courseData.length,
 				graphHeight + 2 * yOffset));
 		this.revalidate();
 		this.repaint();
 	}
 
-	private Vector courseData;
+	private CourseRecord[] courseData;
 
 	private final int xOffset = 100;
 

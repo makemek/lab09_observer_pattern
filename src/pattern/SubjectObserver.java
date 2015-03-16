@@ -5,5 +5,5 @@ package pattern;
  */
 
 public interface SubjectObserver {
-	public void update(CourseData o);
+	public void update(CourseRecord[] o);
 }
