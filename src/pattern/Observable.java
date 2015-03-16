@@ -10,7 +10,7 @@ import java.util.Vector;
 public abstract class Observable {
 
 	public Observable() {
-		this.observers = new Vector();
+		this.observers = new Vector<SubjectObserver>();
 	}
 
 	public Object attach(SubjectObserver o) {
@@ -27,12 +27,12 @@ public abstract class Observable {
 
 	public void notifyObservers() {
 		for (int i = 0; i < observers.size(); i++) {
-			SubjectObserver observer = (SubjectObserver) observers.elementAt(i);
+			SubjectObserver observer = observers.elementAt(i);
 			observer.update(this.getUpdate());
 		}
 	}
 
-	public abstract<T extends CourseData> T getUpdate();
+	public abstract CourseData getUpdate();
 
-	protected Vector observers;
+	protected Vector<SubjectObserver> observers;
 }
