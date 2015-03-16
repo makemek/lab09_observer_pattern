@@ -9,12 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -28,8 +23,8 @@ public class CourseViewer extends JFrame implements ActionListener,
 
 	public CourseViewer() {
 		this.setTitle("Observer Pattern -- Non Pattern Version");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		sliders = new Vector();
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		sliders = new Vector<JSlider>();
 		sliderPanel = new JPanel();
 		sliderPanel.setLayout(new GridBagLayout());
 		sliderPanel.setBackground(Color.white);
@@ -79,7 +74,7 @@ public class CourseViewer extends JFrame implements ActionListener,
 	public void addSubject(String record) {
 		boolean alreadyExists = false;
 		for (int i = 0; i < sliders.size(); i++) {
-			JSlider slider = (JSlider) sliders.elementAt(i);
+			JSlider slider = sliders.elementAt(i);
 			if (slider.getName().equals(record)) {
 				alreadyExists = true;
 				JOptionPane
@@ -125,7 +120,7 @@ public class CourseViewer extends JFrame implements ActionListener,
 				+ (this.barSpacing + barWidth) * this.sliders.size(),
 				graphHeight + yOffset);
 		for (int i = 0; i < sliders.size(); i++) {
-			JSlider record = (JSlider) sliders.elementAt(i);
+			JSlider record = sliders.elementAt(i);
 			g.setColor(Color.blue);
 			g.fillRect(this.xOffset + (i + 1) * this.barSpacing + i
 					* this.barWidth, this.yOffset + this.graphHeight
@@ -154,7 +149,7 @@ public class CourseViewer extends JFrame implements ActionListener,
 	// Frame contents
 	private JPanel sliderPanel;
 	private JPanel coursePanel;
-	private Vector sliders;
+	protected Vector<JSlider> sliders;
 	private JScrollPane scrollPane;
 	private JButton button;
 
