@@ -72,8 +72,7 @@ public class CourseController extends JPanel implements SubjectObserver,
 		sliders.addElement(slider);
 	}
 
-	public void update(Object o) {
-		CourseData data = (CourseData) o;
+	public void update(CourseData data) {
 		Vector state = data.getSubjectData();
 		for (int i = sliders.size(); i < state.size(); i++) {
 			this.addSubject((CourseRecord) state.elementAt(i));

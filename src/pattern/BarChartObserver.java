@@ -45,8 +45,7 @@ public class BarChartObserver extends JPanel implements SubjectObserver {
 		}
 	}
 
-	public void update(Object o) {
-		CourseData data = (CourseData) o;
+	public void update(CourseData data) {
 		this.courseData = data.getSubjectData();
 		this.setPreferredSize(new Dimension(2 * xOffset
 				+ (this.barSpacing + barWidth) * this.courseData.size(),

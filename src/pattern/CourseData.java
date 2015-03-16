@@ -51,7 +51,7 @@ public class CourseData extends Observable {
 	}
 
 	//use the pull model
-	public Object getUpdate() {
+	public CourseData getUpdate() {
 		return this;
 	}
 
