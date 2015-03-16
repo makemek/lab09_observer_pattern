@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
 public class CourseData extends Observable {
 
 	public CourseData() {
-		this.subjectData = new Vector();
+		this.subjectData = new Vector<CourseRecord>();
 	}
 
 	public void addSubjectRecord(CourseRecord subjectRecord) {
 		boolean alreadyExists = false;
 		for (int i = 0; i < subjectData.size(); i++) {
-			CourseRecord record = (CourseRecord) subjectData.elementAt(i);
+			CourseRecord record = subjectData.elementAt(i);
 			if (record.getSubject().equals(subjectRecord.getSubject())) {
 				alreadyExists = true;
 				JOptionPane
@@ -36,7 +36,7 @@ public class CourseData extends Observable {
 
 	public void changeSubjectRecord(String subjectName, int numOfStudents) {
 		for (int i = 0; i < subjectData.size(); i++) {
-			CourseRecord record = (CourseRecord) subjectData.elementAt(i);
+			CourseRecord record = subjectData.elementAt(i);
 			if (record.getSubject().equals(subjectName)) {
 				record.setNumOfStudents(numOfStudents);
 				i = subjectData.size();
@@ -46,7 +46,7 @@ public class CourseData extends Observable {
 		this.notifyObservers();
 	}
 
-	public Vector getSubjectData() {
+	public Vector<CourseRecord> getSubjectData() {
 		return subjectData;
 	}
 
@@ -57,10 +57,10 @@ public class CourseData extends Observable {
 
 	private void printState() {
 		for (int i = 0; i < subjectData.size(); i++) {
-			CourseRecord record = (CourseRecord) subjectData.elementAt(i);
+			CourseRecord record = subjectData.elementAt(i);
 			System.out.println(record.toString());
 		}
 	}
 
-	private Vector subjectData;
+	private Vector<CourseRecord> subjectData;
 }
