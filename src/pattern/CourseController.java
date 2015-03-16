@@ -99,7 +99,7 @@ public class CourseController extends JPanel implements SubjectObserver,
 
 		CourseController controller = new CourseController(data);
 
-		BarChartObserver bar = new BarChartObserver(data);
+        PieChartObserver bar = new PieChartObserver(data);
 		JScrollPane scrollPane = new JScrollPane(bar,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
