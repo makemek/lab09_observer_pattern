@@ -25,10 +25,10 @@ public abstract class Observable {
 		}
 	}
 
-	public void notifyObservers() {
+	public void notifyStateChange(CourseRecord record) {
 		for (int i = 0; i < observers.size(); i++) {
 			SubjectObserver observer = observers.elementAt(i);
-			observer.update(this.getUpdate());
+			observer.stateChange(record);
 		}
 	}
 

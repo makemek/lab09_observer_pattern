@@ -48,8 +48,10 @@ public class PieChartObserver extends JPanel implements SubjectObserver {
     }
 
     @Override
-    public void update(CourseRecord[] newData) {
-        courseData = newData;
+    public void stateChange(CourseRecord newData) {
+        for(CourseRecord rec : courseData)
+            if(rec.getSubject().equals(newData.getSubject()))
+                rec = newData;
         this.repaint();
     }
 }

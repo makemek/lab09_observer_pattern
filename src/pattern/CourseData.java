@@ -31,19 +31,21 @@ public class CourseData extends Observable {
 		if (!alreadyExists)
 			this.subjectData.addElement(subjectRecord);
 		printState();
-		this.notifyObservers();
+		this.notifyStateChange(subjectRecord);
 	}
 
 	public void changeSubjectRecord(String subjectName, int numOfStudents) {
+        CourseRecord match = null;
 		for (int i = 0; i < subjectData.size(); i++) {
 			CourseRecord record = subjectData.elementAt(i);
 			if (record.getSubject().equals(subjectName)) {
 				record.setNumOfStudents(numOfStudents);
+                match = record;
 				i = subjectData.size();
 			}
 		}
 		printState();
-		this.notifyObservers();
+		this.notifyStateChange(match);
 	}
 
 	public Vector<CourseRecord> getSubjectData() {
