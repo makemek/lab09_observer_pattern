@@ -9,6 +9,8 @@ import java.util.*;
  */
 public class PieChartObserver extends JPanel implements SubjectObserver {
 
+    private CourseData dataCollection;
+
     private CourseRecord[] courseData;
 
     private static int xOffset = 100;
@@ -18,6 +20,7 @@ public class PieChartObserver extends JPanel implements SubjectObserver {
     private Color[] color = {Color.CYAN, Color.blue, Color.BLACK, Color.green, Color.red};
 
     public PieChartObserver(CourseData data) {
+        dataCollection = data;
         courseData = data.getUpdate();
         data.attach(this);
 
@@ -53,5 +56,10 @@ public class PieChartObserver extends JPanel implements SubjectObserver {
             if(rec.getSubject().equals(newData.getSubject()))
                 rec = newData;
         this.repaint();
+    }
+
+    @Override
+    public void newRecord(CourseRecord rec) {
+        courseData = dataCollection.getUpdate();
     }
 }

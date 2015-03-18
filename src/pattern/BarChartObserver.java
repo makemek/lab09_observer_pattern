@@ -13,7 +13,10 @@ import javax.swing.JPanel;
 
 public class BarChartObserver extends JPanel implements SubjectObserver {
 
+    private CourseData dataCollection;
+
 	public BarChartObserver(CourseData data) {
+        dataCollection = data;
         courseData = data.getUpdate();
 		data.attach(this);
 
@@ -58,7 +61,12 @@ public class BarChartObserver extends JPanel implements SubjectObserver {
 		this.repaint();
 	}
 
-	private CourseRecord[] courseData;
+    @Override
+    public void newRecord(CourseRecord rec) {
+        courseData = dataCollection.getUpdate();
+    }
+
+    private CourseRecord[] courseData;
 
 	private final int xOffset = 100;
 

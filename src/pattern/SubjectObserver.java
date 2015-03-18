@@ -6,5 +6,5 @@ package pattern;
 
 public interface SubjectObserver {
 	public void onValueChanged(CourseRecord o);
-
+    public void newRecord(CourseRecord rec);
 }

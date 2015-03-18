@@ -30,7 +30,7 @@ public class CourseController extends JPanel implements SubjectObserver,
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
 
-		//subjectData.attach(this);
+		subjectData.attach(this);
 
 		Vector state = subjectData.getSubjectData();
 		for (int i = 0; i < state.size(); i++)
@@ -71,16 +71,21 @@ public class CourseController extends JPanel implements SubjectObserver,
 
 	public void onValueChanged(CourseRecord data) {
 //		for (int i = sliders.size(); i < data.length; i++) {
-			this.addSubject(data);
+//			this.addSubject(data);
 //		}
 	}
+
+    @Override
+    public void newRecord(CourseRecord rec) {
+        this.addSubject(rec);
+    }
 
     public void actionPerformed(ActionEvent arg0) {
 		String input = JOptionPane
 				.showInputDialog("Please enter the new course name:");
 		if (input != null) {
             CourseRecord newRecord = new CourseRecord(input, 50);
-            this.addSubject(newRecord);
+            //this.addSubject(newRecord);
             subjectData.addSubjectRecord(newRecord);
         }
 	}

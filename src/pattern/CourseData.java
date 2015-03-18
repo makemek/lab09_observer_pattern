@@ -28,10 +28,12 @@ public class CourseData extends Observable {
 				i = subjectData.size(); //exit the loop
 			}
 		}
-		if (!alreadyExists)
-			this.subjectData.addElement(subjectRecord);
+		if (!alreadyExists) {
+            this.subjectData.addElement(subjectRecord);
+            this.notifyNewRecord(subjectRecord);
+        }
 		printState();
-		this.notifyStateChange(subjectRecord);
+
 	}
 
 	public void changeSubjectRecord(String subjectName, int numOfStudents) {

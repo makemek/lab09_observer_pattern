@@ -32,6 +32,11 @@ public abstract class Observable {
 		}
 	}
 
+    public void notifyNewRecord(CourseRecord record) {
+        for(SubjectObserver obs: observers)
+            obs.newRecord(record);
+    }
+
 	public abstract CourseRecord[] getUpdate();
 
 	protected Vector<SubjectObserver> observers;
