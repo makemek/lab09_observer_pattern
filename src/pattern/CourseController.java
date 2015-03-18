@@ -69,13 +69,13 @@ public class CourseController extends JPanel implements SubjectObserver,
 		sliders.addElement(slider);
 	}
 
-	public void stateChange(CourseRecord data) {
+	public void onValueChanged(CourseRecord data) {
 //		for (int i = sliders.size(); i < data.length; i++) {
 			this.addSubject(data);
 //		}
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
+    public void actionPerformed(ActionEvent arg0) {
 		String input = JOptionPane
 				.showInputDialog("Please enter the new course name:");
 		if (input != null) {

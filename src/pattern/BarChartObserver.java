@@ -46,7 +46,7 @@ public class BarChartObserver extends JPanel implements SubjectObserver {
 		}
 	}
 
-	public void stateChange(CourseRecord newData) {
+	public void onValueChanged(CourseRecord newData) {
         for(CourseRecord rec : courseData)
             if(rec.getSubject().equals(newData.getSubject()))
                 rec = newData;

@@ -28,7 +28,7 @@ public abstract class Observable {
 	public void notifyStateChange(CourseRecord record) {
 		for (int i = 0; i < observers.size(); i++) {
 			SubjectObserver observer = observers.elementAt(i);
-			observer.stateChange(record);
+			observer.onValueChanged(record);
 		}
 	}
 
